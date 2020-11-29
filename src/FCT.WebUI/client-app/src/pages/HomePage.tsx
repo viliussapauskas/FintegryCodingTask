@@ -14,8 +14,10 @@ import {
 } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 import PersonIcon from "@material-ui/icons/Person";
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
+import { RouteComponentProps } from "react-router-dom";
 import { IRegister } from "../models/init";
+import { getListOfRegisteredUsers } from "../utils/localStorageManager";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,16 +27,12 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const HomePage = () => {
+const HomePage: FC<RouteComponentProps> = (props) => {
   const classes = useStyles();
+
   const [users, setUsers] = useState<IRegister[]>([]);
   useEffect(() => {
-    var usersFromLocal = localStorage.getItem("users");
-
-    if (usersFromLocal) {
-      var usersJson: IRegister[] = JSON.parse(usersFromLocal);
-      setUsers(usersJson);
-    }
+    setUsers(getListOfRegisteredUsers());
   }, []);
 
   return (
@@ -56,7 +54,11 @@ const HomePage = () => {
                 secondary={`${x.email} ${x.address}`}
               />
               <ListItemSecondaryAction>
-                <IconButton edge="end" aria-label="edit">
+                <IconButton
+                  edge="end"
+                  aria-label="edit"
+                  onClick={() => props.history.push(`/register/${i}`)}
+                >
                   <EditIcon />
                 </IconButton>
               </ListItemSecondaryAction>
