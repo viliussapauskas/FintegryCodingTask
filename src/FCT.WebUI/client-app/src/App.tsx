@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
+import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import RegisterPage from "./pages/RegisterPage";
 
@@ -16,6 +17,7 @@ const App = () => {
     <div className="App">
       <main>
         <Router>
+          <Navbar />
           <Switch>
             <Route exact path="/register/:id" component={RegisterPage} />
             <Route exact path="/register" component={RegisterPage} />
