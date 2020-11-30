@@ -8,7 +8,5 @@
         public virtual Order Order { get; set; }
         public int GoodId { get; set; }
         public virtual Good Good { get; set; }
-        public int UserId { get; set; }
-        public virtual User User { get; set; }
     }
 }
