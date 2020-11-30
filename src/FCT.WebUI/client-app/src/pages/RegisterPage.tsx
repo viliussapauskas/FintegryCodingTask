@@ -50,11 +50,6 @@ const RegisterPage: FC<RouteComponentProps<IProps>> = (props) => {
 
   const [isEdit, setIsEdit] = useState<boolean | null>(null);
 
-  const baseClient = mbxClient({
-    accessToken: process.env.REACT_APP_MAPBOX_TOKEN,
-  });
-  const geoCodingClient = mbxGeoCoding(baseClient);
-
   useEffect(() => {
     if (props.match.params.id) {
       isIndexValid(props.match.params.id)
