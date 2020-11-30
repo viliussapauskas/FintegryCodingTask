@@ -13,6 +13,7 @@ const App = () => {
       localStorage.setItem("users", JSON.stringify([]));
     }
   }, []);
+
   return (
     <div className="App">
       <main>
